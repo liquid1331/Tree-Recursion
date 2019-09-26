@@ -1,0 +1,21 @@
+https://leetcode.com/problems/binary-tree-paths/
+
+so it is a very interesting problem in which We can assume recursion as an instant that create same object in each iteration
+
+
+
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        def dfs(node,l):
+            nonlocal l1
+            if node.left:
+                dfs(node.left,l+[node.val])
+            if node.right:
+                dfs(node.right,l+[node.val])
+            if not node.right and not node.left:
+                l1.append(l+[node.val])
+        if not root:
+            return []
+        l1=[]
+        dfs(root,[])
+        return list(map(lambda s: "->".join(map(str, s)), l1))
