@@ -1,0 +1,20 @@
+https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+This question is From leet code it is done using a very in interesting conscept of avl tree that if we want to print the level order presentation of the sorted array we and very easyly do that using mid value and recursiopn.
+
+
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        if len(nums) == 0:
+            return None
+        
+        mid = len(nums) // 2
+        print(mid)
+        root = TreeNode(nums[mid])
+        
+        root.left = self.sortedArrayToBST(nums[:mid])
+        root.right = self.sortedArrayToBST(nums[mid+1:])
+        
+        return root
+        
+        
+This is the very easy solution for that.
