@@ -1,1 +1,30 @@
+This File contains a very import trick of post order question.
+https://leetcode.com/problems/distribute-coins-in-binary-tree/
 
+solution:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def distributeCoins(self, root: TreeNode) -> int:
+        self.sum=0
+        self.post(root,None)
+        return self.sum
+    def post(self,curr,parent):
+        if curr==None:
+            return
+        self.post(curr.left,curr)
+        self.post(curr.right,curr)
+        if curr.val<1:
+            self.sum+=1-curr.val
+            parent.val-=1-curr.val
+        if curr.val>1:
+            self.sum+=curr.val-1
+            parent.val+=curr.val-1
+            
+            
